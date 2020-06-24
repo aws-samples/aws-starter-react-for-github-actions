@@ -1,4 +1,4 @@
-# This GitHub Actions workflow runs on every push to the master branch of the
+# This GitHub Actions workflow runs on manual trigger on a branch of a
 # repository, and configures the React app in the AWS Amplify Console.
 #
 # First, the GitHub Action deploys the 'stack.yaml' AWS CloudFormation stack
@@ -8,9 +8,12 @@
 # fully configure it.
 
 on:
-  push:
-    branches:
-      - master
+  workflow_dispatch:
+    inputs:
+      region:
+        description: 'AWS Region to deploy to'
+        required: true
+        default: 'us-east-1'
 
 name: Deploy
 
@@ -33,7 +36,7 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-east-1
+        aws-region: ${{ github.event.inputs.region }}
 
     - name: Configure environment name
       id: env-name
@@ -55,7 +58,7 @@ jobs:
           Name=${{ steps.env-name.outputs.environment }},
           Repository=https://github.com/${{ github.repository }},
           OauthToken=${{ secrets.AMPLIFY_TOKEN }},
-          Domain=${{secrets.AMPLIFY_DOMAIN}}
+          Domain=${{ secrets.AMPLIFY_DOMAIN }}
     # When a domain is configured to the stack,
     # it gets configured in the environment and printed to the console.
     - name: Print default domain
