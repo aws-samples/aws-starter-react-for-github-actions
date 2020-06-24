@@ -1,4 +1,4 @@
-# AWS Starter React for GitHub Actions
+# AWS CloudFormation Action for GitHub Actions React Starter
 
 This starter template contains a bootstrapped [Create React App](https://github.com/facebook/create-react-app) with a GitHub Workflow that deploys the app to the [AWS Amplify Console](https://aws.amazon.com/amplify/console/) using the [AWS CloudFormation Action for GitHub Actions](https://github.com/marketplace/actions/aws-cloudformation-deploy-cloudformation-stack-action-for-github-actions).
 
