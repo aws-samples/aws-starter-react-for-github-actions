@@ -69,4 +69,4 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 ## License
 
-This library is licensed under the MIT-0 License. See the LICENSE file.
+This library and the stack file are licensed under the MIT-0 License. See the LICENSE file.
